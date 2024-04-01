@@ -7,4 +7,5 @@ public record PetResponseDto(Long id, TipoPet tipo, String nome, String raca, In
     public PetResponseDto(Pet pet) {
         this(pet.getId(), pet.getTipo(), pet.getNome(), pet.getRaca(), pet.getIdade());
     }
+
 }

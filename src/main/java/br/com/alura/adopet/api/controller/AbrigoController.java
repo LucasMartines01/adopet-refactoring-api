@@ -51,7 +51,7 @@ public class AbrigoController {
         try {
             service.cadastrarPet(idOuNome, dto);
             return ResponseEntity.ok().build();
-        } catch (EntityNotFoundException e) {
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
