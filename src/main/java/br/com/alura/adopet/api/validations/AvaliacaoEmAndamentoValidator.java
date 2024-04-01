@@ -17,17 +17,13 @@ public class AvaliacaoEmAndamentoValidator implements AdocaoValidator {
     @Autowired
     private AdocaoRepository repository;
 
-    @Autowired
-    private PetRepository petRepository;
-
     @Override
     public void validar(SolicitacaoAdocaoDto dto) {
-        Pet pet = petRepository.getReferenceById(dto.idPet());
-        List<Adocao> adocoes = repository.findAll();
-        for (Adocao a : adocoes) {
-            if (a.getPet() == pet && a.getStatus() == StatusAdocao.AGUARDANDO_AVALIACAO) {
+            boolean petJaEstaAguardandoAvaliacao =
+                    repository.existsByPetIdAndStatus(dto.idPet(), StatusAdocao.AGUARDANDO_AVALIACAO);
+            if (petJaEstaAguardandoAvaliacao) {
                 throw new ValidacaoException("Pet já está aguardando avaliação para ser adotado!");
             }
-        }
+
     }
 }
