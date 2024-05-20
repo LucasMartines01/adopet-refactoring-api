@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
-@SpringBootTest
+@SpringBootTest(classes = AdocaoController.class)
 @AutoConfigureMockMvc
 class AdocaoControllerTest {
     @Autowired
