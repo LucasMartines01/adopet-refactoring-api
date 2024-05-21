@@ -9,8 +9,6 @@ import br.com.alura.adopet.api.model.Abrigo;
 import br.com.alura.adopet.api.model.Pet;
 import br.com.alura.adopet.api.repository.AbrigoRepository;
 import br.com.alura.adopet.api.repository.PetRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,11 +16,14 @@ import java.util.Optional;
 
 @Service
 public class AbrigoService {
-    @Autowired
-    AbrigoRepository repository;
+    final AbrigoRepository repository;
 
-    @Autowired
-    PetRepository petRepository;
+    final PetRepository petRepository;
+
+    public AbrigoService(AbrigoRepository repository, PetRepository petRepository) {
+        this.repository = repository;
+        this.petRepository = petRepository;
+    }
 
     public void cadastrar(CadastrarAbrigoDto dto){
         boolean dadosJaCadastrados = repository.existsByNomeOrTelefoneOrEmail(dto.nome(), dto.telefone(), dto.email());
